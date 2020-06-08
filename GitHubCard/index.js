@@ -98,10 +98,10 @@ function createGitCard( gitResponse ){
    let name_data = document.createTextNode( gitResponse.data['name']);
    let username_data = document.createTextNode( gitResponse.data['login']);
    let location_data = document.createTextNode( `Location: ${gitResponse.data['location']}`);
-   let profile_data = document.createTextNode( `Profile :`);
+   let profile_data = document.createTextNode( `Profile : `);
 
    new_link.setAttribute('href', gitResponse.data['url']);
-   let link_data = document.createTextNode(`>${gitResponse.data['url']}`);
+   let link_data = document.createTextNode( gitResponse.data['url'] );
 
    let followers_data = document.createTextNode( `Followers: ${gitResponse.data['followers']}`);
    let following_data = document.createTextNode( `Following: ${gitResponse.data['following']}`);
@@ -111,6 +111,7 @@ function createGitCard( gitResponse ){
    new_name.appendChild(name_data);
    new_username.appendChild(username_data);
    new_location.appendChild(location_data);
+   new_profile.appendChild(profile_data);  // double check this when the network is up again
 
      //append to the inner <a> first 
    new_link.appendChild(link_data);
@@ -134,6 +135,7 @@ function createGitCard( gitResponse ){
    new_card.appendChild(new_img);
    new_card.appendChild(new_cardInfo)
       
+   console.log(new_card);
    return new_card; 
 }
 
