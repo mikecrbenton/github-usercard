@@ -3,15 +3,26 @@
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+const followersArray = [
+   'https://api.github.com/users/tetondan',
+   'https://api.github.com/users/dustinmyers',
+   'https://api.github.com/users/justsml',
+   'https://api.github.com/users/luishrd',
+   'https://api.github.com/users/bigknell',
+   'https://api.github.com/users/mikecrbenton'
+];
 
-axios.get('https://api.github.com/users/mikecrbenton')
-   .then( (response) => {
-      console.log( createGitCard(response));
-      document.querySelector('.cards').appendChild( createGitCard(response) ); 
-   })
-   .catch( (error) => {
-      console.log("Error : " + error);
-   });
+followersArray.forEach( (user) => {
+
+   axios.get( user )
+      .then( (response) => {
+         document.querySelector('.cards').appendChild( createGitCard(response) ); 
+      })
+      .catch( (error) => {
+         console.log("Error : " + error);
+      });
+})
+
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -37,7 +48,6 @@ axios.get('https://api.github.com/users/mikecrbenton')
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -129,11 +139,4 @@ function createGitCard( gitResponse ){
 
 
 
-/*
-  List of LS Instructors Github username's:
-    tetondan
-    dustinmyers
-    justsml
-    luishrd
-    bigknell
-*/
+
